@@ -272,7 +272,8 @@ async def cmd_stats(message: Message):
 # ================== ЗАПУСК ==================
 async def main():
     await init_db()
-    bot = Bot(token=BOT_TOKEN)
+    clean_token = BOT_TOKEN.strip().strip('"').strip("'")
+    bot = Bot(token=clean_token)
     dp = Dispatcher(storage=MemoryStorage())
     dp.include_router(router)
     logging.info("Bot запущен")
